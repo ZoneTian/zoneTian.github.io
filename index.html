@@ -87,8 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####<code>v-if</code>  和  <code>v-for</code> 的优先级哪个最高 </p>
-<p><code>v-if</code>  和 <code>v-for</code>的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。</p>
+        <h4 id="v-if-和-v-for-的优先级哪个最高"><a href="#v-if-和-v-for-的优先级哪个最高" class="headerlink" title="v-if  和  v-for 的优先级哪个最高"></a><code>v-if</code>  和  <code>v-for</code> 的优先级哪个最高</h4><p><code>v-if</code>  和 <code>v-for</code>的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。</p>
 <ol>
 <li><code>v-for</code> 优先于 <code>v-if</code> 被解析，<code>v-for</code>  比 <code>v-if</code> 具有更高的优先级。</li>
 <li>如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。</li>

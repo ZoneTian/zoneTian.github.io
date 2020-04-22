@@ -7,15 +7,15 @@
   
   <title>vue常见问题 --- 1 | 神经兮兮白羊座</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#####v-if  和  v-for 的优先级哪个最高  v-if  和 v-for的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。  v-for 优先于 v-if 被解析，v-for  比 v-if 具有更高的优先级。 如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。 要避免同时出现，在外层嵌套 template， 先进行 v-if 。">
+  <meta name="description" content="v-if  和  v-for 的优先级哪个最高v-if  和 v-for的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。  v-for 优先于 v-if 被解析，v-for  比 v-if 具有更高的优先级。 如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。 要避免同时出现，在外层嵌套 template， 先进行 v-if 。  ####vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue常见问题 --- 1">
 <meta property="og:url" content="https://zonetian.github.io/2020/04/22/vue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="神经兮兮白羊座">
-<meta property="og:description" content="#####v-if  和  v-for 的优先级哪个最高  v-if  和 v-for的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。  v-for 优先于 v-if 被解析，v-for  比 v-if 具有更高的优先级。 如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。 要避免同时出现，在外层嵌套 template， 先进行 v-if 。">
+<meta property="og:description" content="v-if  和  v-for 的优先级哪个最高v-if  和 v-for的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。  v-for 优先于 v-if 被解析，v-for  比 v-if 具有更高的优先级。 如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。 要避免同时出现，在外层嵌套 template， 先进行 v-if 。  ####vue">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-22T07:50:17.000Z">
-<meta property="article:modified_time" content="2020-04-22T09:02:07.489Z">
+<meta property="article:modified_time" content="2020-04-22T09:03:45.566Z">
 <meta property="article:author" content="Zone Tian">
 <meta property="article:tag" content="webDeveloper React">
 <meta name="twitter:card" content="summary">
@@ -89,8 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####<code>v-if</code>  和  <code>v-for</code> 的优先级哪个最高 </p>
-<p><code>v-if</code>  和 <code>v-for</code>的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。</p>
+        <h4 id="v-if-和-v-for-的优先级哪个最高"><a href="#v-if-和-v-for-的优先级哪个最高" class="headerlink" title="v-if  和  v-for 的优先级哪个最高"></a><code>v-if</code>  和  <code>v-for</code> 的优先级哪个最高</h4><p><code>v-if</code>  和 <code>v-for</code>的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。</p>
 <ol>
 <li><code>v-for</code> 优先于 <code>v-if</code> 被解析，<code>v-for</code>  比 <code>v-if</code> 具有更高的优先级。</li>
 <li>如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。</li>
