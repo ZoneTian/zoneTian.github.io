@@ -65,6 +65,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vue常见问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/22/vue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-04-22T07:50:17.940Z" itemprop="datePublished">2020-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/22/vue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">vue常见问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: vue常见问题<br>date: 2020-04-22 15:50:17<br>Tags: vue</p>
+<p>#####<code>v-if</code>  和  <code>v-for</code> 的优先级哪个最高 </p>
+<p><code>v-if</code>  和 <code>v-for</code>的优先级哪个最高，如果两个同时出现，应该怎么优化得到更好的性能。</p>
+<ol>
+<li><code>v-for</code> 优先于 <code>v-if</code> 被解析，<code>v-for</code>  比 <code>v-if</code> 具有更高的优先级。</li>
+<li>如果同时出现，每次循环都会先执行循环再执行判断条件，无论如何循环都不可避免，浪费性能。</li>
+<li>要避免同时出现，在外层嵌套 <code>template</code>， 先进行 <code>v-if</code> 。</li>
+</ol>
+<p>####vue组件的data必须是个函数而根组件没有这个限制</p>
+<p>为了保证多实例的时候状态不会互相干扰，而根组件只会创建一次，单例。</p>
+<p>vue的组件可能存在多个实例，如果使用对象形式定义data，则会导致他们共用一个data对象，那么状态变更将会影响所有组件实例，这是不合理的，如果使用函数形式定义，在initdata的时候会将其作为工厂函数返回全新的data对象，有效规避多实例之间状态污染的问题。而根实例创建过程中则不存在该限制，也是因为根实例只能有一个，不需要担心这种情况。之前看源码的时候，数据初始化的时候会检测数据的格式，从而决定数据处理的方式。根实例是能拿到实例的所以能够躲过校验，而其他的数据合并的时候并没有实例生成，所以会直接被检测出来。</p>
+<h4 id="key-的作用和原理"><a href="#key-的作用和原理" class="headerlink" title="key 的作用和原理"></a><code>key</code> 的作用和原理</h4><ol>
+<li><p><code>key</code> 的作用是可以高效的更新虚拟 <code>dom</code>，其原理是 <code>vue</code> 在 <code>patch</code> 过程中可以通过 <code>key</code> 来精准的判断两个节点是否是同一个，从而避免更新不同的元素，使得整个过程更高效，减少 <code>dom</code> 操作，提高性能。</p>
+</li>
+<li><p>另外，不设置 <code>key</code> 可能在列表更新时隐藏的<code>bug</code>。</p>
+</li>
+<li><p><code>vue</code> 在使用相同标签名元素的过渡切换时，也会使用到<code>key</code> 属性，目的也是为了可以更好的区分它们，否则vue只会更新内部属性，而忽略过渡效果。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/04/22/vue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" data-id="ck9b1pzog0000od3d9va52u04" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Redux-Source-Study" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/21/Redux-Source-Study/" class="article-date">
@@ -127,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/04/21/Redux-Source-Study/" data-id="ck99l6qdj0000yq3dh5402fc9" class="article-share-link">Share</a>
+      <a data-url="https://zonetian.github.io/2020/04/21/Redux-Source-Study/" data-id="ck9b1pzon0001od3d6vwo4a4e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li></ul>
@@ -178,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/04/20/hello-world/" data-id="ck99l6qdo0001yq3dewqqdrht" class="article-share-link">Share</a>
+      <a data-url="https://zonetian.github.io/2020/04/20/hello-world/" data-id="ck9b1pzop0002od3dfmdq133x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -231,6 +286,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/04/22/vue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">vue常见问题</a>
+          </li>
         
           <li>
             <a href="/2020/04/21/Redux-Source-Study/">Redux-Source-Study</a>
