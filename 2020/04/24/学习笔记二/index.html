@@ -7,15 +7,15 @@
   
   <title>学习笔记二 | 神经兮兮白羊座</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="洋葱模型 多个项目维护打包区分模块 环境变量的设定 apollo 微前端 menorepo 设计思路 cicd  docker nginx rwd 手写promise 从零搭建一个项目，你会怎么去做，比如文件怎么划分模块，业务啊功能模块的区分，webpack打包环境控制，config文件定义之类 项目怎么部署发布的 serverless">
+  <meta name="description" content="洋葱模型 中间件模式 reduce 函数是函数式编程的一个重要概念，可用于实现函数组合（compose） 参考 深入了解洋葱模型  多个项目维护打包区分模块 目前看来很多公司都是使用公用模块单独打包成npm即可（可私有或者公有），A和B依赖这个公用模块即可  环境变量的设定  使用 cross-env 设置 缺点是  1.1 scripts 命令过长，书写过程不方便 1.2 变量混杂 1.3 多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记二">
 <meta property="og:url" content="https://zonetian.github.io/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/index.html">
 <meta property="og:site_name" content="神经兮兮白羊座">
-<meta property="og:description" content="洋葱模型 多个项目维护打包区分模块 环境变量的设定 apollo 微前端 menorepo 设计思路 cicd  docker nginx rwd 手写promise 从零搭建一个项目，你会怎么去做，比如文件怎么划分模块，业务啊功能模块的区分，webpack打包环境控制，config文件定义之类 项目怎么部署发布的 serverless">
+<meta property="og:description" content="洋葱模型 中间件模式 reduce 函数是函数式编程的一个重要概念，可用于实现函数组合（compose） 参考 深入了解洋葱模型  多个项目维护打包区分模块 目前看来很多公司都是使用公用模块单独打包成npm即可（可私有或者公有），A和B依赖这个公用模块即可  环境变量的设定  使用 cross-env 设置 缺点是  1.1 scripts 命令过长，书写过程不方便 1.2 变量混杂 1.3 多">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-24T05:59:48.000Z">
-<meta property="article:modified_time" content="2020-04-24T09:07:48.766Z">
+<meta property="article:modified_time" content="2020-04-26T06:08:38.682Z">
 <meta property="article:author" content="Zone Tian">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
@@ -90,19 +90,181 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>洋葱模型</li>
-<li>多个项目维护打包区分模块</li>
-<li>环境变量的设定</li>
-<li>apollo 微前端</li>
-<li>menorepo 设计思路</li>
-<li>cicd </li>
-<li>docker</li>
-<li>nginx</li>
-<li>rwd</li>
-<li>手写promise</li>
+<li><p>洋葱模型</p>
+<p>中间件模式</p>
+<p>reduce 函数是函数式编程的一个重要概念，可用于实现函数组合（compose）</p>
+<p>参考</p>
+<p><a href="http://tangqq.cn/web/shen-ru-li-jie-yang-cong-mo-xing-zhong-jian-jian-ji-zhi" target="_blank" rel="noopener">深入了解洋葱模型</a></p>
+</li>
+<li><p>多个项目维护打包区分模块</p>
+<p>目前看来很多公司都是使用公用模块单独打包成<code>npm</code>即可（可私有或者公有），A和B依赖这个公用模块即可</p>
+</li>
+<li><p>环境变量的设定</p>
+<ol>
+<li><p>使用 <code>cross-env</code> 设置</p>
+<p>缺点是 </p>
+<p>1.1 <code>scripts</code> 命令过长，书写过程不方便</p>
+<p>1.2 变量混杂</p>
+<p>1.3 多环境变量引入，需要添加额外的命令</p>
+</li>
+<li><p>直接使用不同的命令，使用命令来区分，然后引入不同的json</p>
+<p>比如 <code>env-cmd</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>apollo</p>
+<p>Apollo（阿波罗）是携程框架部门研发的开源配置管理中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。</p>
+<p><a href="[https://github.com/ctripcorp/apollo/wiki/Go%E3%80%81Python%E3%80%81NodeJS%E3%80%81PHP%E7%AD%89%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97](https://github.com/ctripcorp/apollo/wiki/Go、Python、NodeJS、PHP等客户端使用指南)" >Go、Python、NodeJS、PHP等客户端使用指南</a></p>
+</li>
+<li><p>微前端</p>
+<p><a href="https://baijiahao.baidu.com/s?id=1638313846156942854&wfr=spider&for=pc" target="_blank" rel="noopener">微前端</a></p>
+<p>为什么要使用微前端</p>
+<ul>
+<li>遗留系统迁移</li>
+<li>聚合前端应用</li>
+<li>热闹驱动开发</li>
+</ul>
+<p>微前端能带来的好处</p>
+<ul>
+<li>应用自治</li>
+<li>单一指责</li>
+<li>无关技术栈</li>
+</ul>
+<p>如何设计微前端架构</p>
+<blockquote>
+<p> 架构模式</p>
+</blockquote>
+<ol>
+<li><p>基座模式</p>
+<p>通过一个主应用，来管理其他应用，设计难度小，方便实践，但是通用度低。</p>
+</li>
+<li><p>自组织式</p>
+<p>应用之间是平等，不存在相互管理的模式。设计难度大，不方便实施，但是通用度高。</p>
+</li>
+</ol>
+<blockquote>
+<p>服务的注册表模式</p>
+</blockquote>
+<ol>
+<li><p>应用发现</p>
+<p>让主应用可以寻找到其他应用</p>
+</li>
+<li><p>应用注册</p>
+<p>提供新的微前端应用，向应用注册表注册的功能</p>
+</li>
+<li><p>第三方应用注册</p>
+<p>让第三方的应用，可以介入到系统中</p>
+</li>
+<li><p>访问权限等配置</p>
+</li>
+</ol>
+<blockquote>
+<p>设计理念</p>
+</blockquote>
+<ul>
+<li><p>中心化 </p>
+<p>应用注册表，拥有每个应用及对应的入口。在前端领域里，入口的直接表现形式可以是路由，又或者对应的应用映射。</p>
+</li>
+<li><p>标识化应用</p>
+<p>我们需要一个标识符来标识不同的应用，以便于在安装、卸载的时候，能寻找到执行的应用。</p>
+</li>
+<li><p>应用生命周期管理</p>
+</li>
+<li><p>高内聚低耦合</p>
+</li>
+</ul>
+<blockquote>
+<p>生命周期</p>
+</blockquote>
+<ul>
+<li>Load 决定加载哪个应用</li>
+<li>Bootstrap 获取静态资源</li>
+<li>Mount 安装使用，如创建DOM节点、取消事件绑定</li>
+<li>Unload 删除应用的生命周期</li>
+<li>Unmount 卸载应用，如删除DOM节点</li>
+</ul>
+<blockquote>
+<p>技术方式</p>
+</blockquote>
+<ul>
+<li><p>路由分发式</p>
+<ul>
+<li>通过路由将不同的业务分发到不同的、独立前端应用上，通常通过 <code>HTTP</code> 服务器的反向代理实现。</li>
+</ul>
+</li>
+<li><p>前端微服务化</p>
+<ul>
+<li>每个前端应用都是完全独立（技术栈、开发、部署、构建独立）、独立运行，最后通过模块化的方式组合出完整的前端应用。</li>
+</ul>
+</li>
+<li><p>微应用</p>
+<p>开发时，应用都是以单一、微小应用的形式存在，运行时通过构建系统合并这些应用。以软件工程的方式，来完成前端应用的开发，因此又可以称之为组合式集成。</p>
+</li>
+<li><p>微件化</p>
+</li>
+<li><p>前端容器化</p>
+</li>
+<li><p>应用组件化</p>
+</li>
+</ul>
+<blockquote>
+<p>业务拆分</p>
+</blockquote>
+<ul>
+<li>按照业务拆分</li>
+<li>按照权限拆分</li>
+<li>按照变更的频率拆分</li>
+<li>按照组织结构拆分</li>
+<li>跟随后端微服务拆分</li>
+</ul>
+</li>
+<li><p>monorepo 设计思路</p>
+<p>Monorepo 简单的说，是指将公司的所有代码放到一个 Git / Mercurial / Subversion 的代码仓库中。</p>
+<p>monorepo 最主要的好处是<strong>统一的工作流</strong>和<strong>Code Sharing</strong>。</p>
+<p>一个理想的开发环境可以抽象成这样：</p>
+<p>“只关心业务代码，可以直接跨业务复用而不关心复用方式，调试时所有代码都在源码中。”</p>
+<p>理想 <code>monorepo</code> 的设计</p>
+<p>全局配置文件只有一个，<code>node_modules</code> 也只有一个，既保证了项目依赖的一致性，又避免了依赖被重复安装，节省空间的同时还提高了安装速度。</p>
+<p>兄弟模块之间通过模块 <code>pakeage.json</code> 定义的 <code>name</code> 相互饮用，保证模块之间的独立性，但又不需要真正发布或安装这个模块，通过 <code>tsconfig.json</code> 的 <code>paths</code> 与 <code>webpack</code> 的 <code>alias</code> 共同实现虚拟模块路径的效果。</p>
+<p>常用的monorepo工具  <a href="https://github.com/lerna/lerna" target="_blank" rel="noopener">learna</a></p>
+</li>
+<li><p>cicd </p>
+<p>CI / CD的采用改变了开发人员和测试人员如何发布软件。</p>
+<p>CI  (Continuous Integration) 持续集成</p>
+<p>CD(Continuous Delivery) 持续交付</p>
+<p>CD(Continuous Deployment) 持续部署</p>
+</li>
+<li><p>docker</p>
+<ul>
+<li>Web 应用的自动化打包和发布。</li>
+<li>自动化测试和持续集成、发布。</li>
+<li>在服务型环境中部署和调整数据库或其他的后台应用。</li>
+</ul>
+</li>
+<li><p>nginx</p>
+<p>Nginx(“engine x”)是一款是由俄罗斯的程序设计师Igor Sysoev所开发高性能的 Web和 反向代理 服务器，也是一个 IMAP/POP3/SMTP 代理服务器。</p>
+<p>在高连接并发的情况下，Nginx是Apache服务器不错的替代品。</p>
+</li>
+<li><p>RWD</p>
+<p>响应式网站设计(简称RWD)是一种新的网站设计模式，以此构建的网站可自动适应不同的访问设备(从桌面电脑、平板电脑到智能手机)，方便用户阅读和导航浏览，减少用户的放大/缩小/滑动操作，从而提供完整而友好的用户体验。</p>
+</li>
+<li><p>手写promise</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">function Promise(executor) &#123;</span><br><span class="line">  var _this &#x3D; this;</span><br><span class="line">  this.state &#x3D; &quot;pending&quot;;</span><br><span class="line">  this.value &#x3D; undefined;</span><br><span class="line">  this.reason &#x3D; undefined;</span><br><span class="line">  this.onFullfilledFunc &#x3D; [];</span><br><span class="line">  this.onRejectedFunc &#x3D; [];</span><br><span class="line">  executor(resolve, reject);</span><br><span class="line"></span><br><span class="line">  function resolve(value) &#123;</span><br><span class="line">    if (_this.state &#x3D;&#x3D;&#x3D; &quot;pending&quot;) &#123;</span><br><span class="line">      _this.value &#x3D; value;</span><br><span class="line">      _this.onFullfilledFunc.forEach(fn &#x3D;&gt; &#123;</span><br><span class="line">        fn(value);</span><br><span class="line">      &#125;);</span><br><span class="line">      _this.state &#x3D; &quot;resoled&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  function reject(reason) &#123;</span><br><span class="line">    if (_this.state &#x3D;&#x3D;&#x3D; &quot;pending&quot;) &#123;</span><br><span class="line">      _this.reason &#x3D; reason;</span><br><span class="line">      _this.onRejectedFunc.forEach(fn &#x3D;&gt; &#123;</span><br><span class="line">        fn(reason);</span><br><span class="line">      &#125;);</span><br><span class="line">      _this.state &#x3D; &quot;rejected&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Promise.prototype.then &#x3D; function(onFullfilled, onRejected) &#123;</span><br><span class="line">  if (this.state &#x3D;&#x3D;&#x3D; &quot;resolved&quot;) &#123;</span><br><span class="line">    if (typeof onFullfilled &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      onFullfilled(this.value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (this.state &#x3D;&#x3D;&#x3D; &quot;rejected&quot;) &#123;</span><br><span class="line">    if (typeof onRejected &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      onRejected(this.reason);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (this.state &#x3D;&#x3D;&#x3D; &quot;pending&quot;) &#123;</span><br><span class="line">    if (typeof onFullfilled &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      this.onFullfilledFunc.push(onFullfilled);</span><br><span class="line">    &#125;</span><br><span class="line">    if (typeof onRejected &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      this.onRejectedFunc.push(onRejected);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let p &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      resolve(1);</span><br><span class="line">  &#125;,500);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.then(data &#x3D;&gt; console.log(data)); &#x2F;&#x2F;没有任何结果</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
 <li>从零搭建一个项目，你会怎么去做，比如文件怎么划分模块，业务啊功能模块的区分，webpack打包环境控制，config文件定义之类</li>
-<li>项目怎么部署发布的</li>
-<li>serverless</li>
+</ul>
+<ul>
+<li><p>项目怎么部署发布的</p>
+</li>
+<li><p>serverless</p>
+</li>
 </ul>
 
       
