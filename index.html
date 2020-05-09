@@ -65,6 +65,143 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Daily-Interview-Question-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/09/Daily-Interview-Question-1/" class="article-date">
+  <time datetime="2020-05-09T09:25:16.000Z" itemprop="datePublished">2020-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/09/Daily-Interview-Question-1/">写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<p>##结论</p>
+<p><code>key</code> 的作用主要是为了高效的更新虚拟 <code>DOM</code>，<code>key</code> 值是用来判断 <code>VDOM</code> 元素项的唯一依据。</p>
+<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><p>###React 中的 key</p>
+<p>​    <code>key</code> 帮助 <code>React</code> 识别哪些元素改变了，比如被添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识。一个元素的 <code>key</code> 最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用数据中的 <code>id</code> 来作为元素的 <code>key</code>。</p>
+<p>​    当元素没有确定 <code>id</code> 的时候，万不得已你可以使用元素索引 <code>index</code> 作为 <code>key</code>。如果列表项目的顺序可能会变化，我们不建议使用索引来用作 <code>key</code> 值，因为这样做会导致性能变差，还可能引起组件状态的问题。</p>
+<blockquote>
+<p><a href = "https://zh-hans.reactjs.org/docs/lists-and-keys.html#keys" >React官方的解释</a></p>
+</blockquote>
+<p>###Vue 中的 key</p>
+<p><code>key</code> 的特殊 <code>attribute</code> 主要用在 <code>Vue</code> 的虚拟 <code>DOM</code> 算法，在新旧 <code>nodes</code> 对比时辨识 <code>VNodes</code>。如果不使用 key，<code>Vue</code> 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 <code>key</code> 时，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code> 不存在的元素。</p>
+<p>有相同父元素的子元素必须有<strong>独特的 key</strong>。重复的 <code>key</code> 会造成渲染错误。</p>
+<blockquote>
+<p><a href = "https://cn.vuejs.org/v2/api/#key" >Vue官方的解释</a></p>
+</blockquote>
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><h3 id="vue-和-react-diff设计的不同点"><a href="#vue-和-react-diff设计的不同点" class="headerlink" title="vue 和 react diff设计的不同点"></a>vue 和 react diff设计的不同点</h3><p>vue使用依赖收集追踪，可以更加颗粒化更新组件，而react采用自顶而下的更新策略。</p>
+<h3 id="使用key是否能提高diff速度"><a href="#使用key是否能提高diff速度" class="headerlink" title="使用key是否能提高diff速度"></a>使用key是否能提高diff速度</h3><p>分情况讨论，在没有绑定key的情况下，并且遍历模版简单，会导致虚拟新旧节点对比更快，节点也会复用，但是这种复用是就地复用，鸭式辩型的复用。但是会导致一些隐藏的副作用，比如可能不会产生过渡效果，或者在某些节点有绑定数据（表单）状态，会出现状态错位。VUE文档也说明了 <a href="https://cn.vuejs.org/v2/guide/list.html#key" target="_blank" rel="noopener"><code>这个默认的模式是高效的，但是只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出</code></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/09/Daily-Interview-Question-1/" data-id="ck9zgc0bk0003nd3deh9k94qm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-reactr-Study" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/07/reactr-Study/" class="article-date">
+  <time datetime="2020-05-07T07:04:51.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/07/reactr-Study/">reactr-Study</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>react virtual dom</p>
+<p>是什什么？说⼀一下</p>
+<p>di</p>
+<p>ff</p>
+<p>算法？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/07/reactr-Study/" data-id="ck9zgc0b80000nd3d2uji7kkp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-router-Study" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/06/react-router-Study/" class="article-date">
+  <time datetime="2020-05-06T02:41:39.000Z" itemprop="datePublished">2020-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/06/react-router-Study/">react-router-Study</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="BroweRouter"><a href="#BroweRouter" class="headerlink" title="BroweRouter"></a>BroweRouter</h4><p>本质是一个高阶组件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/06/react-router-Study/" data-id="ck9zgc0bh0001nd3ddv6vgw63" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-diary0428" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/28/diary0428/" class="article-date">
@@ -835,56 +972,12 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/20/hello-world/" class="article-date">
-  <time datetime="2020-04-20T06:01:51.941Z" itemprop="datePublished">2020-04-20</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/04/20/hello-world/" data-id="ck9ci59xj0003wb3dhmx18n9b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -897,7 +990,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Diary/" rel="tag">Diary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diary/" rel="tag">diary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Diary/" rel="tag">Diary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diary/" rel="tag">diary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
     </div>
   </div>
 
@@ -907,7 +1000,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Diary/" style="font-size: 10px;">Diary</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/diary/" style="font-size: 10px;">diary</a> <a href="/tags/web/" style="font-size: 20px;">web</a>
+      <a href="/tags/Daily-Interview-Question/" style="font-size: 10px;">Daily-Interview-Question</a> <a href="/tags/Diary/" style="font-size: 10px;">Diary</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/diary/" style="font-size: 10px;">diary</a> <a href="/tags/web/" style="font-size: 20px;">web</a>
     </div>
   </div>
 
@@ -916,7 +1009,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
     </div>
   </div>
 
@@ -929,23 +1022,23 @@
       <ul>
         
           <li>
+            <a href="/2020/05/09/Daily-Interview-Question-1/">写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/reactr-Study/">reactr-Study</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/react-router-Study/">react-router-Study</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/28/diary0428/">diary0428</a>
           </li>
         
           <li>
             <a href="/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">学习笔记二</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">学习笔记-</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/23/diary/">狂欢是一群人的孤单</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/23/ReactHook/">ReactHook</a>
           </li>
         
       </ul>
