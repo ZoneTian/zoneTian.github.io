@@ -65,6 +65,369 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Daily-Interview-Question-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/20/Daily-Interview-Question-10/" class="article-date">
+  <time datetime="2020-05-20T06:32:15.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/20/Daily-Interview-Question-10/">将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Fun(arr)&#123;</span><br><span class="line">	return Array.from(new Set(arr.flat(Infinity))).sort((a,b)&#x3D;&gt;a-b)</span><br><span class="line">&#125;</span><br><span class="line">const arr &#x3D; [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];</span><br><span class="line">Fun(arr)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/20/Daily-Interview-Question-10/" data-id="ckaf1b9to00016w3d8wd9hj5v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Daily-Interview-Question-9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/20/Daily-Interview-Question-9/" class="article-date">
+  <time datetime="2020-05-20T06:32:11.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/20/Daily-Interview-Question-9/">异步笔试题，请写出下面代码的运行结果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">async function async1() &#123;</span><br><span class="line">    console.log(&#39;async1 start&#39;);</span><br><span class="line">    await async2();</span><br><span class="line">    console.log(&#39;async1 end&#39;);</span><br><span class="line">&#125;</span><br><span class="line">function async2() &#123;</span><br><span class="line">    console.log(&#39;async2&#39;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#39;script start&#39;);</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">    console.log(&#39;setTimeout&#39;);</span><br><span class="line">&#125;, 0)</span><br><span class="line">async1();</span><br><span class="line">new Promise(function(resolve) &#123;</span><br><span class="line">    console.log(&#39;promise1&#39;);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise2&#39;);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&#39;script end&#39;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>##结论</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">async1 end</span><br><span class="line">promise2</span><br><span class="line">setTimeout*&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><ol>
+<li><p>先执行第一个console.log() 输出 <strong>script start</strong></p>
+</li>
+<li><p><code>setTimeout</code> 挂载在task</p>
+</li>
+<li><p>执行<code>async1</code> 函数 输出 <strong>async1 start</strong></p>
+</li>
+<li><p>await 后等待 <code>async2</code> 执行 输出 <strong>async2</strong></p>
+</li>
+<li><p><strong>易错点</strong>  这时候的 <code>console.log(&#39;async1 end&#39;);</code> 相当于<code>async2</code> 的<code>resolve</code> 所以挂载在微任务队列</p>
+</li>
+<li><p>执行 <code>Promise</code> 输出 <strong>promise1</strong> ， <code>Promise</code>的<code>resolve</code> 挂载在微任务队列</p>
+</li>
+<li><p>输出 <strong>script end</strong></p>
+</li>
+<li><p>这时执行微任务队列 相继输出 </p>
+<p><strong>async1 end</strong></p>
+<p><strong>promise2</strong></p>
+</li>
+<li><p>执行新的宏任务队列 输出 **setTimeout</p>
+</li>
+</ol>
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><blockquote>
+<p><a href = "https://muyiy.cn/question/async/9.html" >从async/await到单向链表</a></p>
+</blockquote>
+<p>#####eventloop</p>
+<p>JS主线程不断的循环往复的从任务队列中读取任务，执行任务，这中运行机制称为事件循环（event loop）。</p>
+<p>#####Microtasks、Macrotasks</p>
+<p>Microtasks和Macrotasks是异步任务的一种类型，<code>Microtasks</code>的优先级要高于<code>Macrotasks</code>，下面是它们所包含的api：</p>
+<ul>
+<li>microtasks<ul>
+<li>process.nextTick</li>
+<li>promise</li>
+<li>Object.observe (废弃)</li>
+<li>MutationObserver</li>
+</ul>
+</li>
+<li>macrotasks<ul>
+<li>setTimeout</li>
+<li>setImmerdiate</li>
+<li>setInterval</li>
+<li>I/O</li>
+<li>UI 渲染</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ol>
+<li>每一个 event loop 都有一个 microtask queue</li>
+<li>每个 event loop 会有一个或多个macrotaks queue ( 也可以称为task queue )</li>
+<li>一个任务 task 可以放入 macrotask queue 也可以放入 microtask queue中</li>
+<li>每一次event loop，会首先执行 microtask queue， 执行完成后，会提取 macrotask queue 的一个任务加入 microtask queue， 接着继续执行microtask queue，依次执行下去直至所有任务执行结束。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/20/Daily-Interview-Question-9/" data-id="ckaf1b9tq00046w3d000g29c8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Daily-Interview-Question-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/20/Daily-Interview-Question-8/" class="article-date">
+  <time datetime="2020-05-20T06:32:07.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/20/Daily-Interview-Question-8/">Async/Await 如何通过同步的方式实现异步</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<p>##结论</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function get(val) &#123;</span><br><span class="line">  return new Promise((resolve, reject)&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#96;正在加载$&#123;val&#125;&#96;);</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">      resolve(val);</span><br><span class="line">      console.log(&#96;$&#123;val&#125;加载完毕&#96;);</span><br><span class="line">    &#125;,1000 + Math.random() * 10000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">const startFunction &#x3D; async ()&#x3D;&gt;&#123;</span><br><span class="line">	const res &#x3D; await get(1)</span><br><span class="line">	console.log(&#39;test&#39;)</span><br><span class="line">	const res1 &#x3D; await get(2)</span><br><span class="line">&#125;</span><br><span class="line">const resall &#x3D;startFunction()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><p>#####Async/Await</p>
+<p>首先，<code>async/await</code> 是 <code>Generator</code> 的语法糖，<code>async</code>函数就是将 Generator 函数的星号（<code>*</code>）替换成<code>async</code>，将<code>yield</code>替换成<code>await</code>，仅此而已。</p>
+<p>但是也略有不同</p>
+<p>（1）内置执行器。</p>
+<p>Generator 函数的执行必须靠执行器，所以才有了<code>co</code>模块，而<code>async</code>函数自带执行器。也就是说，<code>async</code>函数的执行，与普通函数一模一样，只要一行。</p>
+<p>（2）更好的语义。</p>
+<p><code>async</code>和<code>await</code>，比起星号和<code>yield</code>，语义更清楚了。<code>async</code>表示函数里有异步操作，<code>await</code>表示紧跟在后面的表达式需要等待结果。</p>
+<p>（3）更广的适用性。</p>
+<p><code>co</code>模块约定，<code>yield</code>命令后面只能是 Thunk 函数或 Promise 对象，而<code>async</code>函数的<code>await</code>命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时会自动转成立即 resolved 的 Promise 对象）。</p>
+<p>（4）返回值是 Promise。</p>
+<p><code>async</code>函数的返回值是 Promise 对象，这比 Generator 函数的返回值是 Iterator 对象方便多了。你可以用<code>then</code>方法指定下一步的操作。</p>
+<p>进一步说，<code>async</code>函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而<code>await</code>命令就是内部<code>then</code>命令的语法糖。</p>
+<blockquote>
+<p><a href = "https://es6.ruanyifeng.com/#docs/async" >阮一峰的es6 </a></p>
+</blockquote>
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><p><code>async/await</code> 是参照 <code>Generator</code> 封装的一套异步处理方案，可以理解为 <code>Generator</code> 的语法糖，</p>
+<p>所以了解 <code>async/await</code> 就不得不讲一讲 <code>Generator</code>,</p>
+<p>而 <code>Generator</code> 又依赖于迭代器<code>Iterator</code>，</p>
+<p>所以就得先讲一讲 <code>Iterator</code>,</p>
+<p>而 <code>Iterator</code> 的思想呢又来源于单向链表。</p>
+<blockquote>
+<p><a href = "https://muyiy.cn/question/async/9.html" >从async/await到单向链表</a></p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/20/Daily-Interview-Question-8/" data-id="ckaf1b9tr00066w3d3rqrah91" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Daily-Interview-Question-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/19/Daily-Interview-Question-7/" class="article-date">
+  <time datetime="2020-05-19T07:40:33.000Z" itemprop="datePublished">2020-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/19/Daily-Interview-Question-7/">setTimeout、Promise、Async/Await 的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<p>##结论</p>
+<p>本质是在问事件循环，事件循环分为宏任务队列和微任务队列。</p>
+<p>settimeout的回调函数放到宏任务队列里，等到执行栈清空以后执行。</p>
+<p>promise.then里的回调函数会放到相应宏任务的微任务队列里，等宏任务里面的同步代码执行完再执行。</p>
+<p>async函数表示函数里面可能会有异步方法，await后面跟一个表达式，async方法执行时，遇到await会立即执行表达式，然后把表达式后面的代码放到微任务队列里，让出执行栈让同步代码先执行。</p>
+<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><h2 id="settimeout"><a href="#settimeout" class="headerlink" title="settimeout"></a>settimeout</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)	&#x2F;&#x2F;1. 打印 script start</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&#39;settimeout&#39;)	&#x2F;&#x2F; 4. 打印 settimeout</span><br><span class="line">&#125;)	&#x2F;&#x2F; 2. 调用 setTimeout 函数，并定义其完成后执行的回调函数</span><br><span class="line">console.log(&#39;script end&#39;)	&#x2F;&#x2F;3. 打印 script start</span><br><span class="line">&#x2F;&#x2F; 输出顺序：script start-&gt;script end-&gt;settimeout</span><br></pre></td></tr></table></figure>
+
+<h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>Promise本身是<strong>同步的立即执行函数</strong>， 当在executor中执行resolve或者reject的时候, 此时是异步操作， 会先执行then/catch等，当主栈完成后，才会去调用resolve/reject中存放的方法执行，打印p的时候，是打印的返回结果，一个Promise实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)</span><br><span class="line">let promise1 &#x3D; new Promise(function (resolve) &#123;</span><br><span class="line">    console.log(&#39;promise1&#39;)</span><br><span class="line">    resolve()</span><br><span class="line">    console.log(&#39;promise1 end&#39;)</span><br><span class="line">&#125;).then(function () &#123;</span><br><span class="line">    console.log(&#39;promise2&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&#39;settimeout&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出顺序: script start-&gt;promise1-&gt;promise1 end-&gt;script end-&gt;promise2-&gt;settimeout</span><br></pre></td></tr></table></figure>
+
+<p>当JS主线程执行到Promise对象时，</p>
+<ul>
+<li>promise1.then() 的回调就是一个 task</li>
+<li>promise1 是 resolved或rejected: 那这个 task 就会放入当前事件循环回合的微任务队列</li>
+<li>promise1 是 pending: 这个 task 就会放入 事件循环的未来的某个(可能下一个)回合的 微任务队列中</li>
+<li>setTimeout 的回调也是个 task ，它会被放入宏任务队列 即使是 0ms 的情况</li>
+</ul>
+<h2 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">async function async1()&#123;</span><br><span class="line">   console.log(&#39;async1 start&#39;);</span><br><span class="line">    await async2();</span><br><span class="line">    console.log(&#39;async1 end&#39;)</span><br><span class="line">&#125;</span><br><span class="line">async function async2()&#123;</span><br><span class="line">    console.log(&#39;async2&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(&#39;script start&#39;);</span><br><span class="line">async1();</span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出顺序：script start-&gt;async1 start-&gt;async2-&gt;script end-&gt;async1 end</span><br></pre></td></tr></table></figure>
+
+<p>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/19/Daily-Interview-Question-7/" data-id="ckaf1b9tj00006w3dh30290h4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Daily-Interview-Question-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/19/Daily-Interview-Question-6/" class="article-date">
+  <time datetime="2020-05-19T07:40:29.000Z" itemprop="datePublished">2020-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/19/Daily-Interview-Question-6/">ES5/ES6 的继承除了写法以外还有什么区别？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<p>##结论</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class firstFather &#123;&#125;</span><br><span class="line">class firstChild extends firstFather &#123;&#125;</span><br><span class="line">const firstGrandson &#x3D; new firstChild()</span><br><span class="line"></span><br><span class="line">console.log(firstChild.__proto__ &#x3D;&#x3D;&#x3D; firstFather);&#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">function secondFather()&#123;&#125;</span><br><span class="line">function secondChild()&#123;&#125;</span><br><span class="line">secondChild.prototype &#x3D; secondFather</span><br><span class="line">const secondGrandson  &#x3D; new secondChild()</span><br><span class="line">console.log(secondChild.__proto__ &#x3D;&#x3D;&#x3D; Function.prototype); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p>ES5 和 ES6 子类 <code>this</code> 生成顺序不同。ES5 的继承先生成了子类实例，再调用父类的构造函数修饰子类实例，ES6 的继承先生成父类实例，再调用子类的构造函数修饰父类实例。这个差别使得 ES6 可以继承内置对象。</p>
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><p>#####ES5/ES6 的class 和 function 有什么不同</p>
+<ol>
+<li><p><code>class</code> 声明会提升，但不会初始化赋值。<code>Foo</code> 进入暂时性死区，类似于 <code>let</code>、<code>const</code> 声明变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const bar &#x3D; new Bar(); &#x2F;&#x2F; it&#39;s ok</span><br><span class="line">function Bar() &#123;</span><br><span class="line">  this.bar &#x3D; 42;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const foo &#x3D; new Foo(); &#x2F;&#x2F; ReferenceError: Foo is not defined</span><br><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.foo &#x3D; 42;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p><code>class</code> 声明内部会启用严格模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 引用一个未声明的变量</span><br><span class="line">function Bar() &#123;</span><br><span class="line">  baz &#x3D; 42; &#x2F;&#x2F; it&#39;s ok</span><br><span class="line">&#125;</span><br><span class="line">const bar &#x3D; new Bar();</span><br><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    fol &#x3D; 42; &#x2F;&#x2F; ReferenceError: fol is not defined</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const foo &#x3D; new Foo();</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p><code>class</code> 的所有方法（包括静态方法和实例方法）都是不可枚举的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 引用一个未声明的变量</span><br><span class="line">function Bar() &#123;</span><br><span class="line">  this.bar &#x3D; 42;</span><br><span class="line">&#125;</span><br><span class="line">Bar.answer &#x3D; function() &#123;</span><br><span class="line">  return 42;</span><br><span class="line">&#125;;</span><br><span class="line">Bar.prototype.print &#x3D; function() &#123;</span><br><span class="line">  console.log(this.bar);</span><br><span class="line">&#125;;</span><br><span class="line">const barKeys &#x3D; Object.keys(Bar); &#x2F;&#x2F; [&#39;answer&#39;]</span><br><span class="line">const barProtoKeys &#x3D; Object.keys(Bar.prototype); &#x2F;&#x2F; [&#39;print&#39;]</span><br><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.foo &#x3D; 42;</span><br><span class="line">  &#125;</span><br><span class="line">  static answer() &#123;</span><br><span class="line">    return 42;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    console.log(this.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const fooKeys &#x3D; Object.keys(Foo); &#x2F;&#x2F; []</span><br><span class="line">const fooProtoKeys &#x3D; Object.keys(Foo.prototype); &#x2F;&#x2F; []</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p><code>class</code> 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有<code>[[construct]]</code>，不能使用 <code>new</code> 来调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Bar() &#123;</span><br><span class="line">  this.bar &#x3D; 42;</span><br><span class="line">&#125;</span><br><span class="line">Bar.prototype.print &#x3D; function() &#123;</span><br><span class="line">  console.log(this.bar);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const bar &#x3D; new Bar();</span><br><span class="line">const barPrint &#x3D; new bar.print(); &#x2F;&#x2F; it&#39;s ok</span><br><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.foo &#x3D; 42;</span><br><span class="line">  &#125;</span><br><span class="line">  print() &#123;</span><br><span class="line">    console.log(this.foo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const foo &#x3D; new Foo();</span><br><span class="line">const fooPrint &#x3D; new foo.print(); &#x2F;&#x2F; TypeError: foo.print is not a constructor</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>必须使用 <code>new</code> 调用 <code>class</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Bar() &#123;</span><br><span class="line">  this.bar &#x3D; 42;</span><br><span class="line">&#125;</span><br><span class="line">const bar &#x3D; Bar(); &#x2F;&#x2F; it&#39;s ok</span><br><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.foo &#x3D; 42;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const foo &#x3D; Foo(); &#x2F;&#x2F; TypeError: Class constructor Foo cannot be invoked without &#39;new&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="6">
+<li><p><code>class</code> 内部无法重写类名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Bar() &#123;</span><br><span class="line">  Bar &#x3D; &#39;Baz&#39;; &#x2F;&#x2F; it&#39;s ok</span><br><span class="line">  this.bar &#x3D; 42;</span><br><span class="line">&#125;</span><br><span class="line">const bar &#x3D; new Bar();</span><br><span class="line">&#x2F;&#x2F; Bar: &#39;Baz&#39;</span><br><span class="line">&#x2F;&#x2F; bar: Bar &#123;bar: 42&#125;  </span><br><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.foo &#x3D; 42;</span><br><span class="line">    Foo &#x3D; &#39;Fol&#39;; &#x2F;&#x2F; TypeError: Assignment to constant variable</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const foo &#x3D; new Foo();</span><br><span class="line">Foo &#x3D; &#39;Fol&#39;; &#x2F;&#x2F; it&#39;s ok</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/19/Daily-Interview-Question-6/" data-id="ckaf1b9tp00026w3d8b6zene8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Daily-Interview-Question-5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/18/Daily-Interview-Question-5/" class="article-date">
@@ -109,6 +472,8 @@
       <a data-url="https://zonetian.github.io/2020/05/18/Daily-Interview-Question-5/" data-id="ckac8qu3p0000lk3d5jlj4u4t" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
     </footer>
   </div>
   
@@ -206,6 +571,8 @@
       <a data-url="https://zonetian.github.io/2020/05/18/Daily-Interview-Question-4/" data-id="ckac8qu410001lk3dh86iazqy" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
     </footer>
   </div>
   
@@ -310,7 +677,7 @@
 <li>防抖动和节流本质是不一样的。防抖动是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行。</li>
 </ol>
 <p>##题目详解</p>
-<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><ul>
+<h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><ul>
 <li>触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</li>
 <li>每次触发事件时都取消之前的延时调用方法</li>
 </ul>
@@ -339,6 +706,8 @@
       <a data-url="https://zonetian.github.io/2020/05/14/Daily-Interview-Question-3/" data-id="cka6jtipd00004x3d0bih5i68" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
     </footer>
   </div>
   
@@ -403,531 +772,6 @@
 
 
   
-    <article id="post-reactr-Study" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/07/reactr-Study/" class="article-date">
-  <time datetime="2020-05-07T07:04:51.000Z" itemprop="datePublished">2020-05-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/07/reactr-Study/">reactr-Study</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>react virtual dom</p>
-<p>是什什么？说⼀一下</p>
-<p>di</p>
-<p>ff</p>
-<p>算法？</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/05/07/reactr-Study/" data-id="ck9zgc0b80000nd3d2uji7kkp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-react-router-Study" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/06/react-router-Study/" class="article-date">
-  <time datetime="2020-05-06T02:41:39.000Z" itemprop="datePublished">2020-05-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/react-router-Study/">react-router-Study</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="BroweRouter"><a href="#BroweRouter" class="headerlink" title="BroweRouter"></a>BroweRouter</h4><p>本质是一个高阶组件</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/05/06/react-router-Study/" data-id="ck9zgc0bh0001nd3ddv6vgw63" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-diary0428" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/28/diary0428/" class="article-date">
-  <time datetime="2020-04-28T02:36:44.000Z" itemprop="datePublished">2020-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/28/diary0428/">diary0428</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近经历了蛮多事情的，很多是打击，想记录一下吧。</p>
-<blockquote>
-<p>悲伤与沮丧</p>
-</blockquote>
-<p>本来6月份的计划，被突然提前，疯狂的去刷题，去学习，很多时候是一知半解，长期在这个公司的舒适圈里，让我没办法去看清这个大环境，固步自封，并且自我感觉良好。在突如其来的打击之后，有些看不清自己，看不清未来的方向，接下来可能还有一步，不知最后是否能成行，但是想记住这次的耻辱。</p>
-<p>这是一种无能感，深深的感觉到自己的不足，以及应对紧急情况的慌张。现在才真正意识到爸爸说我经历的风雨太少这句话的含义，不知道同龄人中，我究竟算是什么位置。听到的好话太多，找不到方向。</p>
-<p>围城，城里的人想出去，城外的人想进来。</p>
-<blockquote>
-<p>明天与未来</p>
-</blockquote>
-<p>最近在看很多留学生的vlog，他们大多数都是大学生，日常学习，规划自己的生活，健康且自律。反观自己，假装努力，看着一直在学习其实很多时候都是一知半解，应该是我的学习方式出了问题。</p>
-<p>希望自己能从别人的vlog从学习到一种生活态度和学习能力，保持一个长期的运动习惯和定时休整的饮食习惯，最最重要的就是保持一致学习的状态。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/04/28/diary0428/" data-id="ck9jc0rcw0000nd3dfuiv8c21" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/diary/" rel="tag">diary</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-学习笔记二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/" class="article-date">
-  <time datetime="2020-04-24T05:59:48.000Z" itemprop="datePublished">2020-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">学习笔记二</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>洋葱模型</p>
-<p>中间件模式</p>
-<p>reduce 函数是函数式编程的一个重要概念，可用于实现函数组合（compose）</p>
-<p>参考</p>
-<p><a href="http://tangqq.cn/web/shen-ru-li-jie-yang-cong-mo-xing-zhong-jian-jian-ji-zhi" target="_blank" rel="noopener">深入了解洋葱模型</a></p>
-</li>
-<li><p>多个项目维护打包区分模块</p>
-<p>目前看来很多公司都是使用公用模块单独打包成<code>npm</code>即可（可私有或者公有），A和B依赖这个公用模块即可</p>
-</li>
-<li><p>环境变量的设定</p>
-<ol>
-<li><p>使用 <code>cross-env</code> 设置</p>
-<p>缺点是 </p>
-<p>1.1 <code>scripts</code> 命令过长，书写过程不方便</p>
-<p>1.2 变量混杂</p>
-<p>1.3 多环境变量引入，需要添加额外的命令</p>
-</li>
-<li><p>直接使用不同的命令，使用命令来区分，然后引入不同的json</p>
-<p>比如 <code>env-cmd</code></p>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p>apollo</p>
-<p>Apollo（阿波罗）是携程框架部门研发的开源配置管理中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。</p>
-<p><a href="[https://github.com/ctripcorp/apollo/wiki/Go%E3%80%81Python%E3%80%81NodeJS%E3%80%81PHP%E7%AD%89%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97](https://github.com/ctripcorp/apollo/wiki/Go、Python、NodeJS、PHP等客户端使用指南)" >Go、Python、NodeJS、PHP等客户端使用指南</a></p>
-</li>
-<li><p>微前端</p>
-<p><a href="https://baijiahao.baidu.com/s?id=1638313846156942854&wfr=spider&for=pc" target="_blank" rel="noopener">微前端</a></p>
-<p>为什么要使用微前端</p>
-<ul>
-<li>遗留系统迁移</li>
-<li>聚合前端应用</li>
-<li>热闹驱动开发</li>
-</ul>
-<p>微前端能带来的好处</p>
-<ul>
-<li>应用自治</li>
-<li>单一指责</li>
-<li>无关技术栈</li>
-</ul>
-<p>如何设计微前端架构</p>
-<blockquote>
-<p> 架构模式</p>
-</blockquote>
-<ol>
-<li><p>基座模式</p>
-<p>通过一个主应用，来管理其他应用，设计难度小，方便实践，但是通用度低。</p>
-</li>
-<li><p>自组织式</p>
-<p>应用之间是平等，不存在相互管理的模式。设计难度大，不方便实施，但是通用度高。</p>
-</li>
-</ol>
-<blockquote>
-<p>服务的注册表模式</p>
-</blockquote>
-<ol>
-<li><p>应用发现</p>
-<p>让主应用可以寻找到其他应用</p>
-</li>
-<li><p>应用注册</p>
-<p>提供新的微前端应用，向应用注册表注册的功能</p>
-</li>
-<li><p>第三方应用注册</p>
-<p>让第三方的应用，可以介入到系统中</p>
-</li>
-<li><p>访问权限等配置</p>
-</li>
-</ol>
-<blockquote>
-<p>设计理念</p>
-</blockquote>
-<ul>
-<li><p>中心化 </p>
-<p>应用注册表，拥有每个应用及对应的入口。在前端领域里，入口的直接表现形式可以是路由，又或者对应的应用映射。</p>
-</li>
-<li><p>标识化应用</p>
-<p>我们需要一个标识符来标识不同的应用，以便于在安装、卸载的时候，能寻找到执行的应用。</p>
-</li>
-<li><p>应用生命周期管理</p>
-</li>
-<li><p>高内聚低耦合</p>
-</li>
-</ul>
-<blockquote>
-<p>生命周期</p>
-</blockquote>
-<ul>
-<li>Load 决定加载哪个应用</li>
-<li>Bootstrap 获取静态资源</li>
-<li>Mount 安装使用，如创建DOM节点、取消事件绑定</li>
-<li>Unload 删除应用的生命周期</li>
-<li>Unmount 卸载应用，如删除DOM节点</li>
-</ul>
-<blockquote>
-<p>技术方式</p>
-</blockquote>
-<ul>
-<li><p>路由分发式</p>
-<ul>
-<li>通过路由将不同的业务分发到不同的、独立前端应用上，通常通过 <code>HTTP</code> 服务器的反向代理实现。</li>
-</ul>
-</li>
-<li><p>前端微服务化</p>
-<ul>
-<li>每个前端应用都是完全独立（技术栈、开发、部署、构建独立）、独立运行，最后通过模块化的方式组合出完整的前端应用。</li>
-</ul>
-</li>
-<li><p>微应用</p>
-<p>开发时，应用都是以单一、微小应用的形式存在，运行时通过构建系统合并这些应用。以软件工程的方式，来完成前端应用的开发，因此又可以称之为组合式集成。</p>
-</li>
-<li><p>微件化</p>
-</li>
-<li><p>前端容器化</p>
-</li>
-<li><p>应用组件化</p>
-</li>
-</ul>
-<blockquote>
-<p>业务拆分</p>
-</blockquote>
-<ul>
-<li>按照业务拆分</li>
-<li>按照权限拆分</li>
-<li>按照变更的频率拆分</li>
-<li>按照组织结构拆分</li>
-<li>跟随后端微服务拆分</li>
-</ul>
-</li>
-<li><p>monorepo 设计思路</p>
-<p>Monorepo 简单的说，是指将公司的所有代码放到一个 Git / Mercurial / Subversion 的代码仓库中。</p>
-<p>monorepo 最主要的好处是<strong>统一的工作流</strong>和<strong>Code Sharing</strong>。</p>
-<p>一个理想的开发环境可以抽象成这样：</p>
-<p>“只关心业务代码，可以直接跨业务复用而不关心复用方式，调试时所有代码都在源码中。”</p>
-<p>理想 <code>monorepo</code> 的设计</p>
-<p>全局配置文件只有一个，<code>node_modules</code> 也只有一个，既保证了项目依赖的一致性，又避免了依赖被重复安装，节省空间的同时还提高了安装速度。</p>
-<p>兄弟模块之间通过模块 <code>pakeage.json</code> 定义的 <code>name</code> 相互饮用，保证模块之间的独立性，但又不需要真正发布或安装这个模块，通过 <code>tsconfig.json</code> 的 <code>paths</code> 与 <code>webpack</code> 的 <code>alias</code> 共同实现虚拟模块路径的效果。</p>
-<p>常用的monorepo工具  <a href="https://github.com/lerna/lerna" target="_blank" rel="noopener">learna</a></p>
-</li>
-<li><p>cicd </p>
-<p>CI / CD的采用改变了开发人员和测试人员如何发布软件。</p>
-<p>CI  (Continuous Integration) 持续集成</p>
-<p>CD(Continuous Delivery) 持续交付</p>
-<p>CD(Continuous Deployment) 持续部署</p>
-</li>
-<li><p>docker</p>
-<ul>
-<li>Web 应用的自动化打包和发布。</li>
-<li>自动化测试和持续集成、发布。</li>
-<li>在服务型环境中部署和调整数据库或其他的后台应用。</li>
-</ul>
-</li>
-<li><p>nginx</p>
-<p>Nginx(“engine x”)是一款是由俄罗斯的程序设计师Igor Sysoev所开发高性能的 Web和 反向代理 服务器，也是一个 IMAP/POP3/SMTP 代理服务器。</p>
-<p>在高连接并发的情况下，Nginx是Apache服务器不错的替代品。</p>
-</li>
-<li><p>RWD</p>
-<p>响应式网站设计(简称RWD)是一种新的网站设计模式，以此构建的网站可自动适应不同的访问设备(从桌面电脑、平板电脑到智能手机)，方便用户阅读和导航浏览，减少用户的放大/缩小/滑动操作，从而提供完整而友好的用户体验。</p>
-</li>
-<li><p>手写promise</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">function Promise(executor) &#123;</span><br><span class="line">  var _this &#x3D; this;</span><br><span class="line">  this.state &#x3D; &quot;pending&quot;;</span><br><span class="line">  this.value &#x3D; undefined;</span><br><span class="line">  this.reason &#x3D; undefined;</span><br><span class="line">  this.onFullfilledFunc &#x3D; [];</span><br><span class="line">  this.onRejectedFunc &#x3D; [];</span><br><span class="line">  executor(resolve, reject);</span><br><span class="line"></span><br><span class="line">  function resolve(value) &#123;</span><br><span class="line">    if (_this.state &#x3D;&#x3D;&#x3D; &quot;pending&quot;) &#123;</span><br><span class="line">      _this.value &#x3D; value;</span><br><span class="line">      _this.onFullfilledFunc.forEach(fn &#x3D;&gt; &#123;</span><br><span class="line">        fn(value);</span><br><span class="line">      &#125;);</span><br><span class="line">      _this.state &#x3D; &quot;resoled&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  function reject(reason) &#123;</span><br><span class="line">    if (_this.state &#x3D;&#x3D;&#x3D; &quot;pending&quot;) &#123;</span><br><span class="line">      _this.reason &#x3D; reason;</span><br><span class="line">      _this.onRejectedFunc.forEach(fn &#x3D;&gt; &#123;</span><br><span class="line">        fn(reason);</span><br><span class="line">      &#125;);</span><br><span class="line">      _this.state &#x3D; &quot;rejected&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Promise.prototype.then &#x3D; function(onFullfilled, onRejected) &#123;</span><br><span class="line">  if (this.state &#x3D;&#x3D;&#x3D; &quot;resolved&quot;) &#123;</span><br><span class="line">    if (typeof onFullfilled &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      onFullfilled(this.value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (this.state &#x3D;&#x3D;&#x3D; &quot;rejected&quot;) &#123;</span><br><span class="line">    if (typeof onRejected &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      onRejected(this.reason);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (this.state &#x3D;&#x3D;&#x3D; &quot;pending&quot;) &#123;</span><br><span class="line">    if (typeof onFullfilled &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      this.onFullfilledFunc.push(onFullfilled);</span><br><span class="line">    &#125;</span><br><span class="line">    if (typeof onRejected &#x3D;&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      this.onRejectedFunc.push(onRejected);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let p &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      resolve(1);</span><br><span class="line">  &#125;,500);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.then(data &#x3D;&gt; console.log(data)); &#x2F;&#x2F;没有任何结果</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li>从零搭建一个项目，你会怎么去做，比如文件怎么划分模块，业务啊功能模块的区分，webpack打包环境控制，config文件定义之类</li>
-</ul>
-<ul>
-<li><p>项目怎么部署发布的</p>
-</li>
-<li><p>serverless</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/" data-id="ck9dz2d1800006e3d2e6y8tcm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-学习笔记一" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" class="article-date">
-  <time datetime="2020-04-24T05:55:13.000Z" itemprop="datePublished">2020-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">学习笔记-</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>如何看待高阶函数</p>
-<p>javaScript 中的一切都是对象，包括函数。我们可以将变量作为参数传递给函数，函数也是如此。高阶函数就是一个将函数作为参数或者返回值的函数。</p>
-</li>
-<li><p>web安全前端能做什么</p>
-<p>去查询被劫持的js，看操作的是什么dom，然后销毁他使用的dom，或者占用他使用的id。</p>
-</li>
-<li><p>闭包</p>
-<p><strong>闭包函数：</strong>声明在一个函数中的函数，叫做闭包函数。</p>
-<p><strong>闭包：</strong>内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</p>
-</li>
-<li><p>装饰器</p>
-<p>他通过添加<code>@方法名</code>可以对一些对象进行装饰包装然后返回一个被包装过的对象，可以装饰的对象包括：类，属性，方法等</p>
-<ol>
-<li><p>类的装饰</p>
-<p>当装饰的对象是类时，我们操作的就是这个类的本身，即装饰器函数的第一个参数，就是所要装饰的目标类。</p>
-</li>
-<li><p>属性或方法的装饰</p>
-<p>对于类属性或方法的装饰本质是操作起描述符，可以把此事的装饰器理解成 <code>object.defineProperty(obj,props,descriptor)</code> 的语法糖。</p>
-</li>
-</ol>
-</li>
-<li><p>flex布局常用的属性</p>
-<p>弹性布局</p>
-<ul>
-<li><p>flex-direction</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">row</span>（默认值）：主轴为水平方向，起点在左端。</span><br><span class="line"><span class="selector-tag">row-reverse</span>：主轴为水平方向，起点在右端。</span><br><span class="line"><span class="selector-tag">column</span>：主轴为垂直方向，起点在上沿。</span><br><span class="line"><span class="selector-tag">column-reverse</span>：主轴为垂直方向，起点在下沿。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>flex-wrap</p>
-<p><code>nowrap</code>（默认）：不换行。</p>
-<p><code>wrap</code>：换行，第一行在上方。</p>
-<p><code>wrap-reverse</code>：换行，第一行在下方。</p>
-</li>
-<li><p>flex-flow</p>
-<p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
-</li>
-<li><p>justify-content</p>
-<ul>
-<li><code>flex-start</code>（默认值）：左对齐</li>
-<li><code>flex-end</code>：右对齐</li>
-<li><code>center</code>： 居中</li>
-<li><code>space-between</code>：两端对齐，项目之间的间隔都相等。</li>
-<li><code>space-around</code>：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
-</ul>
-</li>
-<li><p>align-items</p>
-<ul>
-<li><code>flex-start</code>：交叉轴的起点对齐。</li>
-<li><code>flex-end</code>：交叉轴的终点对齐。</li>
-<li><code>center</code>：交叉轴的中点对齐。</li>
-<li><code>baseline</code>: 项目的第一行文字的基线对齐。</li>
-<li><code>stretch</code>（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
-</ul>
-</li>
-<li><p>align-content</p>
-<ul>
-<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
-<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
-<li><code>center</code>：与交叉轴的中点对齐。</li>
-<li><code>space-between</code>：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
-<li><code>space-around</code>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
-<li><code>stretch</code>（默认值）：轴线占满整个交叉轴。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>div的垂直水平居中</p>
-<ol>
-<li>margin auto</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">css:</span><br><span class="line">div&#123;</span><br><span class="line">width: 400px;</span><br><span class="line">height: 400px;</span><br><span class="line">position: relative;</span><br><span class="line">border: 1px solid #465468;</span><br><span class="line">&#125;</span><br><span class="line">img&#123;</span><br><span class="line">position: absolute;</span><br><span class="line">margin: auto;</span><br><span class="line">top: 0;</span><br><span class="line">left: 0;</span><br><span class="line">right: 0;</span><br><span class="line">bottom: 0;</span><br><span class="line">&#125;</span><br><span class="line">html:</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;mm.jpg&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>margin负值法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.container&#123;</span><br><span class="line">width: 500px;</span><br><span class="line">height: 400px;</span><br><span class="line">border: 2px solid #379;</span><br><span class="line">position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.inner&#123;</span><br><span class="line">width: 480px;</span><br><span class="line">height: 380px;</span><br><span class="line">background-color: #746;</span><br><span class="line">position: absolute;</span><br><span class="line">top: 50%;</span><br><span class="line">left: 50%;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>table-cell（未脱离文档流的）</p>
-<p>``</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">width: 300px;</span><br><span class="line">height: 300px;</span><br><span class="line">border: 3px solid #555;</span><br><span class="line">display: table-cell;</span><br><span class="line">vertical-align: middle;</span><br><span class="line">text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">img&#123;</span><br><span class="line">vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用flex</p>
-<p>``</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">css:</span><br><span class="line">.container&#123;</span><br><span class="line">width: 300px;</span><br><span class="line">height: 200px;</span><br><span class="line">border: 3px solid #546461;</span><br><span class="line">display: -webkit-flex;</span><br><span class="line">display: flex;</span><br><span class="line">-webkit-align-items: center;</span><br><span class="line">align-items: center;</span><br><span class="line">-webkit-justify-content: center;</span><br><span class="line">justify-content: center;</span><br><span class="line">&#125;</span><br><span class="line">.inner&#123;</span><br><span class="line">border: 3px solid #458761;</span><br><span class="line">padding: 20px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>import 和 require的区别（编译阶段）</p>
-<p>common js</p>
-<p>导出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; testcommonjs.js</span><br><span class="line">exports.a &#x3D; 123;</span><br><span class="line">exports.c &#x3D; function()&#123;</span><br><span class="line">  console.log(&#39;ccc&#39;)</span><br><span class="line">&#125;</span><br><span class="line">exports.d &#x3D; &#123;</span><br><span class="line">  foo: &#39;bar&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;等价&#x3D;&gt; </span><br><span class="line">module.exports.a &#x3D; 123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;等价&#x3D;&gt; </span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  a:123,</span><br><span class="line">  b:&#39;hello&#39;,</span><br><span class="line">  c:function()&#123;</span><br><span class="line">    console.log(&#39;ccc&#39;)</span><br><span class="line">  &#125;,</span><br><span class="line">  d:&#123;</span><br><span class="line">    foo：bar</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;index</span><br><span class="line"></span><br><span class="line">var test &#x3D; require(&#39;.&#x2F;testcommonjs&#39;)</span><br><span class="line">console.log(test.a)</span><br><span class="line">console.log(test.b)</span><br><span class="line">test.c()</span><br><span class="line">console.log(test.d.foo)</span><br></pre></td></tr></table></figure>
-
-<p>es6</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import &#123; a,b,c,d &#125; from &#39;.&#x2F;testesmodule&#39;</span><br><span class="line"></span><br><span class="line">console.log(a)</span><br><span class="line">console.log(b)</span><br><span class="line">c()</span><br><span class="line">console.log(d.foo)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;等价&#x3D;&gt; </span><br><span class="line">import * as test form &#39;.&#x2F;testesmodule&#39;</span><br><span class="line">console.log(test.a)</span><br><span class="line">console.log(test.b)</span><br><span class="line">test.c()</span><br></pre></td></tr></table></figure>
-
-<p>本质上的区别</p>
-<ol>
-<li><p>CommonJS 还是 ES6 Module 输出都可以看成是一个具备多个属性或者方法的对象；</p>
-</li>
-<li><p>default 是 ES6 Module 所独有的关键字，export default fs 输出默认的接口对象，import fs from ‘fs’ 可直接导入这个对象；</p>
-</li>
-<li><p>ES6 Module 中导入模块的属性或者方法是强绑定的，包括基础类型；而 CommonJS 则是普通的值传递或者引用传递。</p>
-</li>
-<li><p>import和require区别</p>
-<p>node编程中最重要的思想是模块化，import和require都是被模块化使用</p>
-<p>require是运行时调用，所以可以随处引入</p>
-<p>import是编译时调用，必须放在文件开头引入，目前部分浏览器不支持，需要用babel把es6转成es5再执行</p>
-</li>
-</ol>
-</li>
-<li><p>技术选型更看重什么</p>
-</li>
-<li><p>react生命周期</p>
-<p>挂载</p>
-<ul>
-<li><p>constructor</p>
-</li>
-<li><p>static getDerivedStateFromProps()</p>
-</li>
-<li><p>render</p>
-</li>
-<li><p>componentDidMount</p>
-</li>
-</ul>
-<p>更新</p>
-<ul>
-<li>static getDerivedStateFromProps</li>
-<li>shouldComponenntUpdate</li>
-<li>render</li>
-<li>getSnapshotBeforeUpdate</li>
-<li>componentDidUpdate</li>
-</ul>
-<p>卸载</p>
-<ul>
-<li>componentWillUnmount</li>
-</ul>
-<p>错误处理</p>
-<ul>
-<li>static getDerivedStateFromError</li>
-<li>componentDidCatch</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/04/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" data-id="ck9dz2d1e00016e3d3u5dg5vz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -956,7 +800,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Daily-Interview-Question/" style="font-size: 10px;">Daily-Interview-Question</a> <a href="/tags/Diary/" style="font-size: 10px;">Diary</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/diary/" style="font-size: 10px;">diary</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/web/" style="font-size: 20px;">web</a>
+      <a href="/tags/Daily-Interview-Question/" style="font-size: 20px;">Daily-Interview-Question</a> <a href="/tags/Diary/" style="font-size: 10px;">Diary</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/diary/" style="font-size: 10px;">diary</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/web/" style="font-size: 15px;">web</a>
     </div>
   </div>
 
@@ -978,23 +822,23 @@
       <ul>
         
           <li>
-            <a href="/2020/05/18/Daily-Interview-Question-5/">介绍下深度优先遍历和广度优先遍历，如何实现？</a>
+            <a href="/2020/05/20/Daily-Interview-Question-10/">将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a>
           </li>
         
           <li>
-            <a href="/2020/05/18/Daily-Interview-Question-4/">介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</a>
+            <a href="/2020/05/20/Daily-Interview-Question-9/">异步笔试题，请写出下面代码的运行结果</a>
           </li>
         
           <li>
-            <a href="/2020/05/18/Foundation-of-node/">初探 Node</a>
+            <a href="/2020/05/20/Daily-Interview-Question-8/">Async/Await 如何通过同步的方式实现异步</a>
           </li>
         
           <li>
-            <a href="/2020/05/14/Daily-Interview-Question-3/">什么是防抖和节流？有什么区别？如何实现？</a>
+            <a href="/2020/05/19/Daily-Interview-Question-7/">setTimeout、Promise、Async/Await 的区别</a>
           </li>
         
           <li>
-            <a href="/2020/05/09/Daily-Interview-Question-1/">写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</a>
+            <a href="/2020/05/19/Daily-Interview-Question-6/">ES5/ES6 的继承除了写法以外还有什么区别？</a>
           </li>
         
       </ul>

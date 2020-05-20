@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>异步笔试题，请写出下面代码的运行结果 | 神经兮兮白羊座</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="只是个人学习笔记详情请移步  壹题 1234567891011121314151617181920async function async1() &amp;#123;    console.log(&#39;async1 start&#39;);    await async2();    console.log(&#39;async1 end&#39;);&amp;#125;function async2()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异步笔试题，请写出下面代码的运行结果">
+<meta property="og:url" content="https://zonetian.github.io/2020/05/20/Daily-Interview-Question-9/index.html">
+<meta property="og:site_name" content="神经兮兮白羊座">
+<meta property="og:description" content="只是个人学习笔记详情请移步  壹题 1234567891011121314151617181920async function async1() &amp;#123;    console.log(&#39;async1 start&#39;);    await async2();    console.log(&#39;async1 end&#39;);&amp;#125;function async2()">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-20T06:32:11.000Z">
+<meta property="article:modified_time" content="2020-05-20T07:31:37.698Z">
+<meta property="article:author" content="Zone Tian">
+<meta property="article:tag" content="Daily-Interview-Question">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">神经兮兮白羊座</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">日常学习记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zonetian.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Daily-Interview-Question-9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/20/Daily-Interview-Question-9/" class="article-date">
+  <time datetime="2020-05-20T06:32:11.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      异步笔试题，请写出下面代码的运行结果
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">async function async1() &#123;</span><br><span class="line">    console.log(&#39;async1 start&#39;);</span><br><span class="line">    await async2();</span><br><span class="line">    console.log(&#39;async1 end&#39;);</span><br><span class="line">&#125;</span><br><span class="line">function async2() &#123;</span><br><span class="line">    console.log(&#39;async2&#39;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#39;script start&#39;);</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">    console.log(&#39;setTimeout&#39;);</span><br><span class="line">&#125;, 0)</span><br><span class="line">async1();</span><br><span class="line">new Promise(function(resolve) &#123;</span><br><span class="line">    console.log(&#39;promise1&#39;);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise2&#39;);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&#39;script end&#39;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>##结论</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">async1 end</span><br><span class="line">promise2</span><br><span class="line">setTimeout*&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><ol>
+<li><p>先执行第一个console.log() 输出 <strong>script start</strong></p>
+</li>
+<li><p><code>setTimeout</code> 挂载在task</p>
+</li>
+<li><p>执行<code>async1</code> 函数 输出 <strong>async1 start</strong></p>
+</li>
+<li><p>await 后等待 <code>async2</code> 执行 输出 <strong>async2</strong></p>
+</li>
+<li><p><strong>易错点</strong>  这时候的 <code>console.log(&#39;async1 end&#39;);</code> 相当于<code>async2</code> 的<code>resolve</code> 所以挂载在微任务队列</p>
+</li>
+<li><p>执行 <code>Promise</code> 输出 <strong>promise1</strong> ， <code>Promise</code>的<code>resolve</code> 挂载在微任务队列</p>
+</li>
+<li><p>输出 <strong>script end</strong></p>
+</li>
+<li><p>这时执行微任务队列 相继输出 </p>
+<p><strong>async1 end</strong></p>
+<p><strong>promise2</strong></p>
+</li>
+<li><p>执行新的宏任务队列 输出 **setTimeout</p>
+</li>
+</ol>
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><blockquote>
+<p><a href = "https://muyiy.cn/question/async/9.html" >从async/await到单向链表</a></p>
+</blockquote>
+<p>#####eventloop</p>
+<p>JS主线程不断的循环往复的从任务队列中读取任务，执行任务，这中运行机制称为事件循环（event loop）。</p>
+<p>#####Microtasks、Macrotasks</p>
+<p>Microtasks和Macrotasks是异步任务的一种类型，<code>Microtasks</code>的优先级要高于<code>Macrotasks</code>，下面是它们所包含的api：</p>
+<ul>
+<li>microtasks<ul>
+<li>process.nextTick</li>
+<li>promise</li>
+<li>Object.observe (废弃)</li>
+<li>MutationObserver</li>
+</ul>
+</li>
+<li>macrotasks<ul>
+<li>setTimeout</li>
+<li>setImmerdiate</li>
+<li>setInterval</li>
+<li>I/O</li>
+<li>UI 渲染</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ol>
+<li>每一个 event loop 都有一个 microtask queue</li>
+<li>每个 event loop 会有一个或多个macrotaks queue ( 也可以称为task queue )</li>
+<li>一个任务 task 可以放入 macrotask queue 也可以放入 microtask queue中</li>
+<li>每一次event loop，会首先执行 microtask queue， 执行完成后，会提取 macrotask queue 的一个任务加入 microtask queue， 接着继续执行microtask queue，依次执行下去直至所有任务执行结束。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/05/20/Daily-Interview-Question-9/" data-id="ckaf1b9tq00046w3d000g29c8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/20/Daily-Interview-Question-10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/20/Daily-Interview-Question-8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Async/Await 如何通过同步的方式实现异步</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Diary/" rel="tag">Diary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diary/" rel="tag">diary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Daily-Interview-Question/" style="font-size: 20px;">Daily-Interview-Question</a> <a href="/tags/Diary/" style="font-size: 10px;">Diary</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/diary/" style="font-size: 10px;">diary</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/web/" style="font-size: 15px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/20/Daily-Interview-Question-10/">将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/20/Daily-Interview-Question-9/">异步笔试题，请写出下面代码的运行结果</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/20/Daily-Interview-Question-8/">Async/Await 如何通过同步的方式实现异步</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/19/Daily-Interview-Question-7/">setTimeout、Promise、Async/Await 的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/19/Daily-Interview-Question-6/">ES5/ES6 的继承除了写法以外还有什么区别？</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Zone Tian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
