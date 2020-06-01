@@ -15,7 +15,7 @@
 <meta property="og:description" content="只是个人学习笔记详情请移步  壹题 ##结论 123456789101112131415function get(val) &amp;#123;  return new Promise((resolve, reject)&#x3D;&gt;&amp;#123;    console.log(&#96;正在加载$&amp;#123;val&amp;#125;&#96;);    setTimeout(()&#x3D;&gt;&amp;#1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-20T06:32:07.000Z">
-<meta property="article:modified_time" content="2020-05-20T07:07:00.170Z">
+<meta property="article:modified_time" content="2020-06-01T08:17:58.355Z">
 <meta property="article:author" content="Zone Tian">
 <meta property="article:tag" content="Daily-Interview-Question">
 <meta name="twitter:card" content="summary">
@@ -120,7 +120,28 @@
 <blockquote>
 <p><a href = "https://muyiy.cn/question/async/9.html" >从async/await到单向链表</a></p>
 </blockquote>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<p>##其他可以实现同步的方法</p>
+<h4 id="回调函数（callback）"><a href="#回调函数（callback）" class="headerlink" title="回调函数（callback）"></a>回调函数（callback）</h4><p><strong>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</strong></p>
+<p>根本问题在于：</p>
+<ul>
+<li>缺乏顺序性：回调低于导致的调试困难，和大脑的思维方式不符合，缺乏可读性</li>
+<li>嵌套函数存在耦合性，一旦有所改动，就会牵一发动全身，<strong>控制反转</strong></li>
+<li>嵌套太多很难处理错误</li>
+</ul>
+<p><strong>优点：简单、容易理解和部署</strong></p>
+<h4 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h4><p>事件驱动模式，任务的执行不取决于代码的顺序而是某个事件是否发生。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;jquery</span><br><span class="line">f1.on(&#39;done&#39;, f2);</span><br><span class="line">　</span><br><span class="line">　</span><br><span class="line">　function f1()&#123;</span><br><span class="line"></span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line"></span><br><span class="line">　　　　　　&#x2F;&#x2F; f1的任务代码</span><br><span class="line"></span><br><span class="line">　　　　　　f1.trigger(&#39;done&#39;);</span><br><span class="line"></span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>优点：比较容易理解，可以绑定多个事件，每个事件都可以指定多个回调函数，而且可以去耦合，有利于模块化</strong></p>
+<p><strong>缺点：整个程序都要变成事件驱动型，运行流程不清晰</strong></p>
+<h4 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h4><p><a href="[http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html](http://www.ruanyifeng.com/blog/2012/12/asynchronous＿javascript.html)">Javascript异步编程的4种方法</a></p>
+<p>####Promise</p>
+<p>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装</p>
+<p><strong>优点：解决了回调地狱的问题</strong></p>
+<p><strong>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</strong></p>
+<h4 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h4><p><strong>特点：可以控制函数的执行</strong>，可以配合 co 函数库</p>
+<h3 id="Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><a href="#Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？" class="headerlink" title="Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？"></a>Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</h3><p><strong>promise构造函数是同步执行的，then方法是异步执行的</strong></p>
+
       
     </div>
     <footer class="article-footer">
@@ -185,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
     </div>
   </div>
 
@@ -198,6 +219,14 @@
       <ul>
         
           <li>
+            <a href="/2020/06/01/Daily-Interview-Question-12/">简单讲解一下 http2 的多路复用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/01/Daily-Interview-Question-11/">如何实现一个 new。</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/20/Daily-Interview-Question-10/">将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a>
           </li>
         
@@ -207,14 +236,6 @@
         
           <li>
             <a href="/2020/05/20/Daily-Interview-Question-8/">Async/Await 如何通过同步的方式实现异步</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/19/Daily-Interview-Question-7/">setTimeout、Promise、Async/Await 的区别</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/19/Daily-Interview-Question-6/">ES5/ES6 的继承除了写法以外还有什么区别？</a>
           </li>
         
       </ul>

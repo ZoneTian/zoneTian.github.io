@@ -65,6 +65,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Daily-Interview-Question-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/01/Daily-Interview-Question-12/" class="article-date">
+  <time datetime="2020-06-01T06:56:33.000Z" itemprop="datePublished">2020-06-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/Daily-Interview-Question-12/">简单讲解一下 http2 的多路复用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<p>##结论</p>
+<p>在 Http/1 中，每次请求都会建立一次 HTTP 连接，也就是我们常说的3次握手、4次握手，这个过程在一次请求过程中占用了相当长时间，即使开启了 keep-alive ,解决了多次连接的问题，但是依然有两个效率上的问题。</p>
+<ol>
+<li>串行的文件传输。当请求 a 文件时，b 文件只能等待，等待 a 连接到服务器、服务器处理文件、服务器返回文件，这三个步骤。我们假设这三步用时都是1s，那么 a 文件用时为3秒，b 文件传输完成用时为6秒，依此类推。（注：此项计算有一个前提条件，就是浏览器和服务器是单通道传输）。</li>
+<li>连接数过多。我们假设 Apache 设置了最大并发数为300，因为浏览器限制，浏览器发起的最大请求数为6，也就是服务器能承载的最高并发为50，当第51个人访问时，就需要等待前面某个请求处理完成。</li>
+</ol>
+<p>HTTP/2 的多路复用就是为了解决上述的两个性能问题。<br>在 HTTP/2 中，有两个非常重要的概念，分别是帧（frame）和流（stream）。<br>帧代表着最小的数据单位，每个帧会标识出该帧属于哪个流，流也就是多个帧组成的数据流。<br>多路复用，就是在一个 TCP 连接中可以存在多条流。换句话说，也就是可以发送多个请求，对端可以通过帧中的标识知道属于哪个请求。通过这个技术，可以避免 HTTP 旧版本中的队头阻塞问题，极大的提高传输性能。</p>
+<p>在http1.1 中 默认允许 connect： keep-alive 但是在一个TCP里面 数据通信时按次进行，也就是说第二次请求发送要在第一次响应后进行，若第一次响应慢，则要一直阻塞。这个问题就是对头阻塞。<br>在HTTP/2.0中，在一个TCP链接中，客户端和服务器可以同时发送多个请求和响应，则避免了对头阻塞， 实现了 双向 实时 多工。 在2.0中 采用了数据流，对同一个请求或响应的所有数据包做了一个独一无二的标识，所以可以不用等待发送。两端会根据标识组装数据流。</p>
+<ul>
+<li>同一域名下，只需要建立一个连接。 =&gt; 减少握手等待时间，以及多个 tcp 竞争带宽。</li>
+<li>单个连接可以承受任意数量的双向数据流。 =&gt; 并行多个请求响应。</li>
+<li>数据流以消息的形式发送，消息由一个或多个帧组成；帧可以乱序发送，根据帧头部的流标识重新组装。 =&gt; 可以设置一个 31 bit 的优先级，有了这个优先值，客户端和服务器就可以在处理不同的流时采取不同的策略，以最优的方式发送流、消息和帧。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/06/01/Daily-Interview-Question-12/" data-id="ckawax18x00007s3d5fxm631q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Daily-Interview-Question-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/01/Daily-Interview-Question-11/" class="article-date">
+  <time datetime="2020-06-01T06:56:29.000Z" itemprop="datePublished">2020-06-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/Daily-Interview-Question-11/">如何实现一个 new。</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="color:red">只是个人学习笔记详情请移步</p>
+
+<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
+<p>##结论</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function _new(fn,...arg)&#123;</span><br><span class="line">	const obj &#x3D; Object.create(fn.prototype);</span><br><span class="line">	const ret &#x3D; fn.apply(obj,...arg);</span><br><span class="line">	return ret instanceof Object?ret:obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zonetian.github.io/2020/06/01/Daily-Interview-Question-11/" data-id="ckawax1an00017s3dhic5amvb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Daily-Interview-Question-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/20/Daily-Interview-Question-10/" class="article-date">
@@ -261,7 +360,28 @@
 <blockquote>
 <p><a href = "https://muyiy.cn/question/async/9.html" >从async/await到单向链表</a></p>
 </blockquote>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<p>##其他可以实现同步的方法</p>
+<h4 id="回调函数（callback）"><a href="#回调函数（callback）" class="headerlink" title="回调函数（callback）"></a>回调函数（callback）</h4><p><strong>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</strong></p>
+<p>根本问题在于：</p>
+<ul>
+<li>缺乏顺序性：回调低于导致的调试困难，和大脑的思维方式不符合，缺乏可读性</li>
+<li>嵌套函数存在耦合性，一旦有所改动，就会牵一发动全身，<strong>控制反转</strong></li>
+<li>嵌套太多很难处理错误</li>
+</ul>
+<p><strong>优点：简单、容易理解和部署</strong></p>
+<h4 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h4><p>事件驱动模式，任务的执行不取决于代码的顺序而是某个事件是否发生。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;jquery</span><br><span class="line">f1.on(&#39;done&#39;, f2);</span><br><span class="line">　</span><br><span class="line">　</span><br><span class="line">　function f1()&#123;</span><br><span class="line"></span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line"></span><br><span class="line">　　　　　　&#x2F;&#x2F; f1的任务代码</span><br><span class="line"></span><br><span class="line">　　　　　　f1.trigger(&#39;done&#39;);</span><br><span class="line"></span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>优点：比较容易理解，可以绑定多个事件，每个事件都可以指定多个回调函数，而且可以去耦合，有利于模块化</strong></p>
+<p><strong>缺点：整个程序都要变成事件驱动型，运行流程不清晰</strong></p>
+<h4 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h4><p><a href="[http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html](http://www.ruanyifeng.com/blog/2012/12/asynchronous＿javascript.html)">Javascript异步编程的4种方法</a></p>
+<p>####Promise</p>
+<p>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装</p>
+<p><strong>优点：解决了回调地狱的问题</strong></p>
+<p><strong>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</strong></p>
+<h4 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h4><p><strong>特点：可以控制函数的执行</strong>，可以配合 co 函数库</p>
+<h3 id="Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><a href="#Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？" class="headerlink" title="Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？"></a>Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</h3><p><strong>promise构造函数是同步执行的，then方法是异步执行的</strong></p>
+
       
     </div>
     <footer class="article-footer">
@@ -307,7 +427,7 @@
 <p>settimeout的回调函数放到宏任务队列里，等到执行栈清空以后执行。</p>
 <p>promise.then里的回调函数会放到相应宏任务的微任务队列里，等宏任务里面的同步代码执行完再执行。</p>
 <p>async函数表示函数里面可能会有异步方法，await后面跟一个表达式，async方法执行时，遇到await会立即执行表达式，然后把表达式后面的代码放到微任务队列里，让出执行栈让同步代码先执行。</p>
-<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><h2 id="settimeout"><a href="#settimeout" class="headerlink" title="settimeout"></a>settimeout</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)	&#x2F;&#x2F;1. 打印 script start</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&#39;settimeout&#39;)	&#x2F;&#x2F; 4. 打印 settimeout</span><br><span class="line">&#125;)	&#x2F;&#x2F; 2. 调用 setTimeout 函数，并定义其完成后执行的回调函数</span><br><span class="line">console.log(&#39;script end&#39;)	&#x2F;&#x2F;3. 打印 script start</span><br><span class="line">&#x2F;&#x2F; 输出顺序：script start-&gt;script end-&gt;settimeout</span><br></pre></td></tr></table></figure>
+<h1 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h1><h2 id="settimeout"><a href="#settimeout" class="headerlink" title="settimeout"></a>settimeout</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)	&#x2F;&#x2F;1. 打印 script start</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&#39;settimeout&#39;)	&#x2F;&#x2F; 4. 打印 settimeout</span><br><span class="line">&#125;)	&#x2F;&#x2F; 2. 调用 setTimeout 函数，并定义其完成后执行的回调函数</span><br><span class="line">console.log(&#39;script end&#39;)	&#x2F;&#x2F;3. 打印 script start</span><br><span class="line">&#x2F;&#x2F; 输出顺序：script start-&gt;script end-&gt;settimeout</span><br></pre></td></tr></table></figure>
 
 <h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>Promise本身是<strong>同步的立即执行函数</strong>， 当在executor中执行resolve或者reject的时候, 此时是异步操作， 会先执行then/catch等，当主栈完成后，才会去调用resolve/reject中存放的方法执行，打印p的时候，是打印的返回结果，一个Promise实例。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)</span><br><span class="line">let promise1 &#x3D; new Promise(function (resolve) &#123;</span><br><span class="line">    console.log(&#39;promise1&#39;)</span><br><span class="line">    resolve()</span><br><span class="line">    console.log(&#39;promise1 end&#39;)</span><br><span class="line">&#125;).then(function () &#123;</span><br><span class="line">    console.log(&#39;promise2&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&#39;settimeout&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出顺序: script start-&gt;promise1-&gt;promise1 end-&gt;script end-&gt;promise2-&gt;settimeout</span><br></pre></td></tr></table></figure>
@@ -322,7 +442,7 @@
 <h2 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">async function async1()&#123;</span><br><span class="line">   console.log(&#39;async1 start&#39;);</span><br><span class="line">    await async2();</span><br><span class="line">    console.log(&#39;async1 end&#39;)</span><br><span class="line">&#125;</span><br><span class="line">async function async2()&#123;</span><br><span class="line">    console.log(&#39;async2&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(&#39;script start&#39;);</span><br><span class="line">async1();</span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出顺序：script start-&gt;async1 start-&gt;async2-&gt;script end-&gt;async1 end</span><br></pre></td></tr></table></figure>
 
 <p>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。</p>
-
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
       
     </div>
     <footer class="article-footer">
@@ -643,140 +763,11 @@
 
 
   
-    <article id="post-Daily-Interview-Question-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/14/Daily-Interview-Question-3/" class="article-date">
-  <time datetime="2020-05-14T08:30:37.000Z" itemprop="datePublished">2020-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/14/Daily-Interview-Question-3/">什么是防抖和节流？有什么区别？如何实现？</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p style="color:red">只是个人学习笔记详情请移步</p>
-
-<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
-<p>##结论</p>
-<p>防抖和节流对于前端来说，算是性能优化的一种解决方案。</p>
-<p>常见的业务场景有电商网站的联想搜索，当用户输入的时候我们就要请求接口，一个用户还好，当用户体量很大时，接口调用过于频繁，会对服务器造成很大的压力，抑或是我们需要在用户滑动到某个位置时去显示一个快速导航栏，这是我们需要去监听 <code>scroll</code> ，这个消耗无异于是巨大的，尤其是当你监听函数不仅仅是一个样式的更改，还有计算，很容易造成页面的卡顿。</p>
-<p>以上两种情况我们就可以用防抖和节流来实现。</p>
-<p>区别 ： </p>
-<ol>
-<li>防抖动和节流本质是不一样的。防抖动是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行。</li>
-</ol>
-<p>##题目详解</p>
-<h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><ul>
-<li>触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</li>
-<li>每次触发事件时都取消之前的延时调用方法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> timeout, result;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> debounced = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">		<span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">			<span class="comment">// 如果已经执行过，不再执行</span></span><br><span class="line">			<span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">			timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				timeout = <span class="literal">null</span>;</span><br><span class="line">			&#125;, wait)</span><br><span class="line">			<span class="keyword">if</span> (callNow) result = func.apply(context, args)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				func.apply(context, args)</span><br><span class="line">			&#125;, wait);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	debounced.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		clearTimeout(timeout);</span><br><span class="line">		timeout = <span class="literal">null</span>;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> debounced;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><blockquote>
-<p><a href = "https://github.com/mqyqingfeng/Blog/issues/22" >JavaScript专题之跟着underscore学防抖 </a></p>
-</blockquote>
-<h1 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h1><ul>
-<li><p>高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-</li>
-<li><p>每次触发事件时都判断当前是否有等待执行的延时函数</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserAction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    container.innerHTML = count++;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> setUseAction = throttle(getUserAction, <span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">container.onmousemove = setUseAction</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"button"</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    setUseAction.cancel();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timeout, context, args, result;</span><br><span class="line">    <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (!options) options = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        previous = options.leading === <span class="literal">false</span> ? <span class="number">0</span> : <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">        <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> throttled = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">        <span class="keyword">if</span> (!previous &amp;&amp; options.leading === <span class="literal">false</span>) previous = now;</span><br><span class="line">        <span class="keyword">var</span> remaining = wait - (now - previous);</span><br><span class="line">        context = <span class="keyword">this</span>;</span><br><span class="line">        args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span> || remaining &gt; wait) &#123;</span><br><span class="line">            <span class="keyword">if</span> (timeout) &#123;</span><br><span class="line">                clearTimeout(timeout);</span><br><span class="line">                timeout = <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            previous = now;</span><br><span class="line">            func.apply(context, args);</span><br><span class="line">            <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!timeout &amp;&amp; options.trailing !== <span class="literal">false</span>) &#123;</span><br><span class="line">            timeout = setTimeout(later, remaining);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    throttled.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timeout);</span><br><span class="line">        previous = <span class="number">0</span>;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> throttled;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><blockquote>
-<p><a href = "https://github.com/mqyqingfeng/Blog/issues/26" >JavaScript专题之跟着 underscore 学节流</a></p>
-</blockquote>
-<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><p><a href="https://blog.csdn.net/hupian1989/article/details/80920324" target="_blank" rel="noopener">防抖(debounce) 和 节流(throttling)</a></p>
-<p>这篇文章将防抖和节流从理论分析上讲的更为详细，有兴趣可以看看。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/05/14/Daily-Interview-Question-3/" data-id="cka6jtipd00004x3d0bih5i68" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Daily-Interview-Question-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/09/Daily-Interview-Question-1/" class="article-date">
-  <time datetime="2020-05-09T09:25:16.000Z" itemprop="datePublished">2020-05-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/09/Daily-Interview-Question-1/">写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p style="color:red">只是个人学习笔记详情请移步</p>
-
-<p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener">壹题</a></p>
-<p>##结论</p>
-<p><code>key</code> 的作用主要是为了高效的更新虚拟 <code>DOM</code>，<code>key</code> 值是用来判断 <code>VDOM</code> 元素项的唯一依据。</p>
-<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><p>###React 中的 key</p>
-<p>​    <code>key</code> 帮助 <code>React</code> 识别哪些元素改变了，比如被添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识。一个元素的 <code>key</code> 最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用数据中的 <code>id</code> 来作为元素的 <code>key</code>。</p>
-<p>​    当元素没有确定 <code>id</code> 的时候，万不得已你可以使用元素索引 <code>index</code> 作为 <code>key</code>。如果列表项目的顺序可能会变化，我们不建议使用索引来用作 <code>key</code> 值，因为这样做会导致性能变差，还可能引起组件状态的问题。</p>
-<blockquote>
-<p><a href = "https://zh-hans.reactjs.org/docs/lists-and-keys.html#keys" >React官方的解释</a></p>
-</blockquote>
-<p>###Vue 中的 key</p>
-<p><code>key</code> 的特殊 <code>attribute</code> 主要用在 <code>Vue</code> 的虚拟 <code>DOM</code> 算法，在新旧 <code>nodes</code> 对比时辨识 <code>VNodes</code>。如果不使用 key，<code>Vue</code> 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 <code>key</code> 时，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code> 不存在的元素。</p>
-<p>有相同父元素的子元素必须有<strong>独特的 key</strong>。重复的 <code>key</code> 会造成渲染错误。</p>
-<blockquote>
-<p><a href = "https://cn.vuejs.org/v2/api/#key" >Vue官方的解释</a></p>
-</blockquote>
-<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><h3 id="vue-和-react-diff设计的不同点"><a href="#vue-和-react-diff设计的不同点" class="headerlink" title="vue 和 react diff设计的不同点"></a>vue 和 react diff设计的不同点</h3><p>vue使用依赖收集追踪，可以更加颗粒化更新组件，而react采用自顶而下的更新策略。</p>
-<h3 id="使用key是否能提高diff速度"><a href="#使用key是否能提高diff速度" class="headerlink" title="使用key是否能提高diff速度"></a>使用key是否能提高diff速度</h3><p>分情况讨论，在没有绑定key的情况下，并且遍历模版简单，会导致虚拟新旧节点对比更快，节点也会复用，但是这种复用是就地复用，鸭式辩型的复用。但是会导致一些隐藏的副作用，比如可能不会产生过渡效果，或者在某些节点有绑定数据（表单）状态，会出现状态错位。VUE文档也说明了 <a href="https://cn.vuejs.org/v2/guide/list.html#key" target="_blank" rel="noopener"><code>这个默认的模式是高效的，但是只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出</code></a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zonetian.github.io/2020/05/09/Daily-Interview-Question-1/" data-id="ck9zgc0bk0003nd3deh9k94qm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daily-Interview-Question/" rel="tag">Daily-Interview-Question</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -809,7 +800,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
     </div>
   </div>
 
@@ -822,6 +813,14 @@
       <ul>
         
           <li>
+            <a href="/2020/06/01/Daily-Interview-Question-12/">简单讲解一下 http2 的多路复用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/01/Daily-Interview-Question-11/">如何实现一个 new。</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/20/Daily-Interview-Question-10/">将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组</a>
           </li>
         
@@ -831,14 +830,6 @@
         
           <li>
             <a href="/2020/05/20/Daily-Interview-Question-8/">Async/Await 如何通过同步的方式实现异步</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/19/Daily-Interview-Question-7/">setTimeout、Promise、Async/Await 的区别</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/19/Daily-Interview-Question-6/">ES5/ES6 的继承除了写法以外还有什么区别？</a>
           </li>
         
       </ul>
